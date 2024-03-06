@@ -7,7 +7,7 @@ sudo mkdir -p /var/log/fastapi
 sudo /usr/bin/python3 -m pip install -r /home/ubuntu/IsraeliTime/python-src/requirements.txt
 
 # Setup service
-sudo cp server-side.service /etc/systemd/system/
+sudo cp /home/ubuntu/IsraeliTime/scripts/server-side.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable test.service
-sudo systemctl start test.service
+sudo systemctl enable server-side.service
+sudo systemctl start server-side.service
