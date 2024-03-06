@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setup
-mkdir -p /var/log/fastapi
+sudo mkdir -p /var/log/fastapi
 
 # Install dependencies
 sudo /usr/bin/python3 -m pip install -r /home/ubuntu/IsraeliTime/python-src/requirements.txt
