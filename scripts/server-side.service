@@ -1,7 +1,14 @@
 [Unit]
 Description=Python Backend server
-After=multi-user.target[Service]
+After=multi-user.target
+
+[Service]
 Type=simple
 Restart=always
+WorkingDirectory=/home/ubuntu/IsraeliTime/python-src/
 ExecStart=/usr/bin/python3 /home/ubuntu/IsraeliTime/python-src/main.py
+StandardOutput=/var/log/fastapi.log
+StandardError=/var/log/fastapi_error.log
+
+[Install]
 WantedBy=multi-user.target
