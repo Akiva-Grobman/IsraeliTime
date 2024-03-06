@@ -6,7 +6,7 @@ After=multi-user.target
 Type=simple
 Restart=always
 WorkingDirectory=/home/ubuntu/IsraeliTime/python-src/
-ExecStart=uvicorn example:app --log-config python-src/log.ini --host 127.0.0.1 --port 8080
+ExecStart=/usr/bin/python3 /home/ubuntu/IsraeliTime/python-src/main.py
 StandardOutput=/var/log/fastapi.log
 StandardError=/var/log/fastapi_error.log
 
