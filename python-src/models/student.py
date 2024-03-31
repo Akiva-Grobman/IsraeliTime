@@ -21,7 +21,7 @@ class Student(BaseModel):
     comments: str = Field(..., alias='הערות \nותיאור')
     time_of_registration: str = Field(..., alias='מועד הירשמות')
     group_leader: str = Field(..., alias='אחראי קבוצה')
-    compatibility: fload = Field(..., alias='התאמה')
+    compatibility: float = Field(..., alias='התאמה')
     amount_used: int = Field(..., alias='כמות ניצול (ההפך מערך אלטרנטיבי)')
     last_lesson: str = Field(..., alias='שיעור אחרון שבוצע')
     previous_lessons: list[str] = Field(..., alias='שיעורים\nשביצע')
