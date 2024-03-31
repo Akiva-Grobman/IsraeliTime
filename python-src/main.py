@@ -1,19 +1,21 @@
 import uvicorn
 from fastapi import FastAPI, Response
 from pathlib import Path
-from mongo_utils import get_dbs
+from mongo_utils import get_dbs, add_student
 from models.student import Student
 
 app = FastAPI()
 
 @app.get("/")
+@app.get("/favicon.ico")
 async def root():
     return Response(content=Path('demo_image.png').read_bytes(), media_type='image/png')
 
 
 @app.post('/add_student')
 async def add_student(student: Student):
-    return 'OK'
+    add_student(student)
+    return 200
 
 @app.get('/dbs')
 async def dbs():
