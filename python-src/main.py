@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI, Response
 from pathlib import Path
 from mongo_utils import get_dbs
-from models.students import Student
+from models.student import Student
 
 app = FastAPI()
 
