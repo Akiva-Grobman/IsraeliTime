@@ -5,7 +5,6 @@ from config import Config
 
 
 def _get_mongo_client() -> MongoClient:
-    # uri = "mongodb+srv://israelitime.of5zepk.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=IsraeliTime"
     return MongoClient(Config.mongo_url,
                         tls=True,
                         # tlsCertificateKeyFile='certs/X509-cert-4343229093406906630.pem',
