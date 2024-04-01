@@ -1,6 +1,6 @@
-from datetime import datetime
+import datetime
 from typing import Optional, Union
-from pydantic import BaseModel, Field, validator, Extra
+from pydantic import BaseModel, Field, validator, Extra, field_validator
 
 
 class StudentLogin(BaseModel):
@@ -11,7 +11,7 @@ class StudentLogin(BaseModel):
     grade: str
     subjects: list[str]
     comments: Optional[str] = None
-    time_of_registration: datetime = Field(default_factory=datetime.now)
+    time_of_registration: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
 
 class Student(BaseModel):
@@ -22,7 +22,7 @@ class Student(BaseModel):
     grade: str
     subjects: list[str]
     comments: Optional[str]
-    time_of_registration: datetime
+    time_of_registration: datetime.datetime
     student_value: Optional[str] = None
     teacher: Optional[str] = None
     contacted_by: Optional[str] = None
@@ -33,6 +33,11 @@ class Student(BaseModel):
     amount_used: Optional[int] = None
     last_lesson: Optional[str] = None
     previous_lessons: Optional[list[str]] = None
+
+    @field_validator("time_of_registration", mode="before")
+    def strip_nanosedonds(cls, v):
+        return datetime.datetime.fromisoformat(v['$date'])
+            # return re.sub(r"(\.\d{6})\d+", r"\g<1>", v)
 
 
 class StudentWithHebrewTranslator(BaseModel):
