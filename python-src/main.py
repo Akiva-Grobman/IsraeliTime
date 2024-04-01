@@ -4,7 +4,7 @@ from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 from mongo_utils import get_dbs, add_student_to_db, get_students_from_db
-from models.student import Student
+from models.student import Student, StudentLogin
 from config import Config
 
 # app = FastAPI(docs_url=None, redoc_url=None)
@@ -25,7 +25,7 @@ async def root():
 
 
 @app.post('/add_student')
-async def add_student(student: Student):
+async def add_student(student: StudentLogin):
     add_student_to_db(student.model_dump())
     return 200
 

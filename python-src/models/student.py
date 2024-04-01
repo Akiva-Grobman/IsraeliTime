@@ -2,6 +2,15 @@ from typing import Optional, Union
 from pydantic import BaseModel, Field
 
 
+class StudentLogin(BaseModel):
+    name: str
+    phone_number: str
+    original_city: str
+    grade: str
+    subjects: list[str]
+    comments: str
+
+
 class Student(BaseModel):
     name: str
     original_city: str
