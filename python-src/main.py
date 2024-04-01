@@ -34,7 +34,7 @@ async def add_student(student: StudentLogin):
 async def get_students(token: str = '') -> list[Student]:
     if token == Config.student_token:
         students = list()
-        for i, s in enumerate(get_students_from_db()):
+        for i, s in enumerate(get_students_from_db(), start=1):
             s['identifier'] = i
             print(s)
             students.append(Student(**s))
