@@ -10,7 +10,7 @@ class StudentLogin(BaseModel):
     current_city: str
     grade: str
     subjects: list[str]
-    comments: str
+    comments: Optional[str] = None
     time_of_registration: datetime = Field(default_factory=datetime.now)
 
 
@@ -21,7 +21,7 @@ class Student(BaseModel):
     current_city: str
     grade: str
     subjects: list[str]
-    comments: str
+    comments: Optional[str]
     time_of_registration: datetime
     student_value: Optional[str] = None
     teacher: Optional[str] = None
