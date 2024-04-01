@@ -33,7 +33,12 @@ async def add_student(student: StudentLogin):
 @app.get('/students')
 async def get_students(token: str = '') -> list[Student]:
     if token == Config.student_token:
-        return [Student(**r) for r in get_students_from_db()]
+        students = list()
+        for i, s in enumerate(get_students_from_db()):
+            s['identifier'] = i
+            print(s)
+            students.append(Student(**s))
+        return students
     print(f'Invalid token - {token}')
     return []
 

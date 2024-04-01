@@ -33,22 +33,27 @@ class Student(BaseModel):
     amount_used: Optional[int] = None
     last_lesson: Optional[str] = None
     previous_lessons: Optional[list[str]] = None
+    identifier: Optional[int] = Field(default=0)
 
     @field_validator("time_of_registration", mode="before")
     def strip_nanosedonds(cls, v):
         return datetime.datetime.fromisoformat(v['$date'])
-            # return re.sub(r"(\.\d{6})\d+", r"\g<1>", v)
 
 
 class StudentWithHebrewTranslator(BaseModel):
     name: str = Field(..., alias='שם')
-    original_city: str = Field(..., alias='יישוב')
-    grade: Optional[str] = Field(None, alias='כיתה')
-    student_value: int = Field(..., alias='ערך תלמיד')
-    subjects: str = Field(..., alias='מקצועות')
     phone_number: Optional[str] = Field(None, alias='טלפון ליצירת קשר')
-    teacher: Optional[str] = Field(None, alias='מורה')
-    contacted_by: str = Field(..., alias='יצר קשר')
+    original_city: str = Field(..., alias='יישוב')
+    current_city: Optional[str] = Field(None, alias='יעד \nפינוי')
+    grade: Optional[str] = Field(None, alias='כיתה')
+    subjects: list[str] = Field(..., alias='מקצועות')
+
+    @field_validator("subjects", mode="before")
+    def strip_nanosedonds(cls, v):
+        return v.split(',')
+
+    # teacher: Optional[str] = Field(None, alias='מורה')
+    # contacted_by: str = Field(..., alias='יצר קשר')
     # subject_details: str = Field(..., alias='נושאי \nלימוד')
     # available_hours: list[str] = Field(..., alias='שעות')
     # evacuated_destination: str = Field(..., alias='יעד \nפינוי')
