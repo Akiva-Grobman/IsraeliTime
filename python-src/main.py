@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, Response
 from pathlib import Path
-from mongo_utils import get_dbs, add_student
+from mongo_utils import get_dbs, add_student_to_db, get_students_from_db
 from models.student import Student
 
 app = FastAPI()
@@ -14,8 +14,12 @@ async def root():
 
 @app.post('/add_student')
 async def add_student(student: Student):
-    add_student(student)
+    add_student_to_db(student.model_dump())
     return 200
+
+@app.get('/students')
+async def get_students() -> list[Student]:
+    return [Student(**r) for r in get_students_from_db()]
 
 @app.get('/dbs')
 async def dbs():

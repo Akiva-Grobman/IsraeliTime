@@ -2,6 +2,32 @@ from pydantic import BaseModel, Field
 
 
 class Student(BaseModel):
+    name: str
+    city: str
+    grade: str
+    hebrew: str
+    literature: str
+    english: str
+    bible: str
+    other: str
+    student_value: str
+    subjects: str
+    contact_number: str
+    teacher: str
+    contacted_by: str
+    subject_details: str
+    hours: list[str]
+    evacuated_destination: str
+    comments: str
+    time_of_registration: str
+    group_leader: str
+    compatibility: float
+    amount_used: int
+    last_lesson: str
+    previous_lessons: list[str]
+
+
+class StudentWithHebrewTranslator(BaseModel):
     name: str = Field(..., serialization_alias='שם')
     city: str = Field(..., serialization_alias='יישוב')
     grade: str = Field(..., serialization_alias='כיתה')
@@ -26,3 +52,5 @@ class Student(BaseModel):
     last_lesson: str = Field(..., serialization_alias='שיעור אחרון שבוצע')
     previous_lessons: list[str] = Field(..., serialization_alias='שיעורים\nשביצע')
 
+    class Config:
+        populate_by_name = True
