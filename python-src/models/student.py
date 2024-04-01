@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 class Student(BaseModel):
     name: str
-    city: str
+    original_city: str
     grade: str
     student_value: str
     subjects: list[str]
@@ -13,7 +13,7 @@ class Student(BaseModel):
     contacted_by: str
     subject_details: str
     available_hours: list[str]
-    evacuated_destination: str
+    current_city: str
     comments: str
     time_of_registration: str
     group_leader: str
@@ -25,7 +25,7 @@ class Student(BaseModel):
 
 class StudentWithHebrewTranslator(BaseModel):
     name: str = Field(..., alias='שם')
-    city: str = Field(..., alias='יישוב')
+    original_city: str = Field(..., alias='יישוב')
     grade: Optional[str] = Field(None, alias='כיתה')
     student_value: int = Field(..., alias='ערך תלמיד')
     subjects: str = Field(..., alias='מקצועות')
