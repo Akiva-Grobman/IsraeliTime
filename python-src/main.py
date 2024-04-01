@@ -33,6 +33,7 @@ async def add_student(student: Student):
 async def get_students(token: str = '') -> list[Student]:
     if token == Config.student_token:
         return [Student(**r) for r in get_students_from_db()]
+    print(f'Invalid token - {token}')
     return []
 
 @app.post('/testing')
