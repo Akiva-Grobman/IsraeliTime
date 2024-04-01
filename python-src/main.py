@@ -35,6 +35,10 @@ async def get_students(token: str = '') -> list[Student]:
         return [Student(**r) for r in get_students_from_db()]
     return []
 
+@app.post('/testing')
+async def test(dummy: dict):
+    return 200
+
 @app.get('/dbs')
 async def dbs():
     return get_dbs()
