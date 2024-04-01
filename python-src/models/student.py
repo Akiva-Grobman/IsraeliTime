@@ -1,35 +1,38 @@
+from datetime import datetime
 from typing import Optional, Union
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator, Extra
 
 
 class StudentLogin(BaseModel):
     name: str
     phone_number: str
     original_city: str
+    current_city: str
     grade: str
     subjects: list[str]
     comments: str
+    time_of_registration: datetime = Field(default_factory=datetime.now)
 
 
 class Student(BaseModel):
     name: str
-    original_city: str
-    grade: str
-    student_value: str
-    subjects: list[str]
     phone_number: str
-    teacher: str
-    contacted_by: str
-    subject_details: str
-    available_hours: list[str]
+    original_city: str
     current_city: str
+    grade: str
+    subjects: list[str]
     comments: str
-    time_of_registration: str
-    group_leader: str
-    compatibility: float
-    amount_used: int
-    last_lesson: str
-    previous_lessons: list[str]
+    time_of_registration: datetime
+    student_value: Optional[str] = None
+    teacher: Optional[str] = None
+    contacted_by: Optional[str] = None
+    subject_details: Optional[str] = None
+    available_hours: Optional[list[str]] = None
+    group_leader: Optional[str] = None
+    compatibility: Optional[float] = None
+    amount_used: Optional[int] = None
+    last_lesson: Optional[str] = None
+    previous_lessons: Optional[list[str]] = None
 
 
 class StudentWithHebrewTranslator(BaseModel):
